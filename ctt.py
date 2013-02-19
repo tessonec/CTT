@@ -149,6 +149,8 @@ def backendize(infile):
   output = []
   ls_output = []
   for line in fin.readlines():
+    if line.strip()[0] == "#" or len(line.strip()) == 0: continue
+    
     if line.strip()[0] == "@":
       vec = line.strip()[1:].split()
       var_name_2 = ""
