@@ -1,6 +1,6 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
-version_number = "1.7.0"
+version_number = "1.8.0"
 release_date   = "Mon Feb 18 2012"
 # :::~ Author: Claudio Juan Tessone <tessonec@ethz.ch> (c) 2002-2013
 # Distributed According to GNU Generic Purpose License (GPL) version 2
@@ -190,7 +190,7 @@ if __name__=="__main__":
    createInit=False
 
    try:
-        opts, args = getopt.getopt(sys.argv[1:], "nihvus")
+        opts, args = getopt.getopt(sys.argv[1:], "nihvup:s")
    except getopt.GetoptError:
         # print help information and exit:
         print "[ctt - ERROR] unknown option"
@@ -201,10 +201,12 @@ if __name__=="__main__":
      print "[ctt - ERROR] can only parse once at a time"
      sys.exit(2)
 
-
+   packageName = None
    for o, a in opts:
         if o == "-u":
           allow_null_config = True
+        if o == "-p":
+          packageName=a
         if o == "-i":
           createInit=True
         if o == "-v":
@@ -350,6 +352,8 @@ if __name__=="__main__":
    print os.path.basename( sys.argv[0] ),
    print " DO NOIT EDIT"
    print "//:::~ "
+   if packageName is not None:
+     print "package ", packageName,";"
    print
    print "import java.util.ArrayList;"
    print "import java.util.List;"
